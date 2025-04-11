@@ -56,7 +56,7 @@ export class UsuarioFormComponent implements OnInit {
       cuil: ['', [Validators.pattern(/^[0-9]{11}$/)]],
       telefono: ['', [Validators.pattern(/^[0-9]{10,15}$/)]],
       correo: ['', [Validators.email]],
-      estado: [EstadoUsuario.ACTIVO, [Validators.required]]
+      estado: ['PENDIENTE', [Validators.required]]
     });
 
     // Bloquear el campo DNI en modo edición
@@ -117,7 +117,7 @@ export class UsuarioFormComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al crear usuario:', error);
-          this.notificationService.error('Error al crear usuario. Posiblemente el DNI ya existe.');
+          this.notificationService.error('Error al crear usuario: ' + error?.message);
           this.loading = false;
         }
       });

@@ -36,7 +36,7 @@ export interface LoginDto {
     cuil?: string;
     telefono?: string;
     correo?: string;
-    estado?: EstadoUsuario;
+    estado?: EstadoPago;
   }
   
   export interface UsuarioListItemDto {
