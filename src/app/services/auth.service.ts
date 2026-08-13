@@ -13,7 +13,7 @@ export class AuthService {
   private userKey = 'auth_user';
   private rolesKey = 'auth_roles';
 
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasValidToken());
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   private userRolesSubject = new BehaviorSubject<string[]>(this.getUserRoles());
@@ -44,7 +44,18 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    const token = localStorage.getItem(this.tokenKey);
+
+    if (!token) {
+      return null;
+    }
+
+    if (this.isTokenExpired(token)) {
+      this.clearSession();
+      return null;
+    }
+
+    return token;
   }
 
   getUserRoles(): string[] {
@@ -66,7 +77,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return this.hasToken();
+    return this.hasValidToken();
   }
 
   private setSession(authResult: JwtResponseDto): void {
@@ -75,7 +86,29 @@ export class AuthService {
     localStorage.setItem(this.rolesKey, JSON.stringify(authResult.roles));
   }
 
-  private hasToken(): boolean {
+  private hasValidToken(): boolean {
     return !!this.getToken();
+  }
+
+  private isTokenExpired(token: string): boolean {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1] ?? '')) as { exp?: number };
+
+      if (!payload.exp) {
+        return true;
+      }
+
+      return payload.exp * 1000 <= Date.now();
+    } catch {
+      return true;
+    }
+  }
+
+  private clearSession(): void {
+    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.userKey);
+    localStorage.removeItem(this.rolesKey);
+    this.isAuthenticatedSubject.next(false);
+    this.userRolesSubject.next([]);
   }
 }

@@ -81,7 +81,7 @@ Campos recomendados:
 4. publicar artefacto estatico
 
 ## Integracion Con Backend
-- `local` debe apuntar a backend local por defecto cuando el desarrollador este trabajando fullstack
+- `local` apunta hoy por defecto a `http://localhost:8080` y debe mantenerse asi hasta formalizar la estrategia completa de environments
 - `dev` debe apuntar al backend `dev`
 - `test` debe apuntar al backend de pruebas o entorno controlado del pipeline
 - `prod` debe apuntar solo al backend de produccion

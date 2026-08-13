@@ -20,36 +20,44 @@
                 Ingreso
               </a>
               <a routerLink="/usuarios" routerLinkActive="active-link" 
+                 *ngIf="authService.hasAnyRole(['ROLE_ADMIN', 'ROLE_OPERADOR'])"
                  class="border-transparent text-white hover:text-primary-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Usuarios
+                 Usuarios
               </a>
               <a routerLink="/inscripciones" routerLinkActive="active-link" 
+                 *ngIf="authService.hasAnyRole(['ROLE_ADMIN', 'ROLE_OPERADOR'])"
                  class="border-transparent text-white hover:text-primary-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Inscripciones
+                 Inscripciones
               </a>
               <a routerLink="/turnos" routerLinkActive="active-link" 
+                 *ngIf="authService.hasAnyRole(['ROLE_ADMIN', 'ROLE_OPERADOR'])"
                  class="border-transparent text-white hover:text-primary-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Turnos
+                 Turnos
               </a>
               <a routerLink="/clases" routerLinkActive="active-link" 
-                  class="border-transparent text-white hover:text-primary-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                  Clases
+                  *ngIf="authService.hasAnyRole(['ROLE_ADMIN', 'ROLE_OPERADOR'])"
+                   class="border-transparent text-white hover:text-primary-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                   Clases
               </a>
               <a routerLink="/planes" routerLinkActive="active-link" 
+                 *ngIf="authService.hasAnyRole(['ROLE_ADMIN', 'ROLE_OPERADOR'])"
                  class="border-transparent text-white hover:text-primary-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Planes
+                 Planes
               </a>
               <a routerLink="/pagos" routerLinkActive="active-link" 
+                 *ngIf="authService.hasAnyRole(['ROLE_ADMIN', 'ROLE_OPERADOR'])"
                  class="border-transparent text-white hover:text-primary-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Pagos
+                 Pagos
               </a>
               <a routerLink="/reportes" routerLinkActive="active-link" 
+                 *ngIf="authService.hasAnyRole(['ROLE_ADMIN', 'ROLE_OPERADOR'])"
                  class="border-transparent text-white hover:text-primary-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Reportes
+                 Reportes
               </a>
               <a routerLink="/cuentas" routerLinkActive="active-link" 
+                 *ngIf="authService.hasAnyRole(['ROLE_ADMIN', 'ROLE_OPERADOR'])"
                  class="border-transparent text-white hover:text-primary-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Cuentas
+                 Cuentas
               </a>
               <a routerLink="/ayuda" routerLinkActive="active-link" 
                  class="border-transparent text-white hover:text-primary-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
